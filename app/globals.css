@@ -7,6 +7,55 @@
 @theme {
   --font-inter: var(--font-inter);
   --font-IBMPlexSerif: var(--font-IBMPlexSerif);
+
+  --color-indigo-500: #6172f3;
+  --color-indigo-700: #3538cd;
+
+  --color-success-25: #f6fef9;
+  --color-success-50: #ecfdf3;
+  --color-success-100: #d1fadf;
+  --color-success-600: #039855;
+  --color-success-700: #027a48;
+  --color-success-900: #054f31;
+
+  --color-pink-25: #fef6fb;
+  --color-pink-100: #fce7f6;
+  --color-pink-500: #ee46bc;
+  --color-pink-600: #dd2590;
+  --color-pink-700: #c11574;
+  --color-pink-900: #851651;
+
+  --color-blue-25: #f5faff;
+  --color-blue-100: #d1e9ff;
+  --color-blue-500: #2e90fa;
+  --color-blue-600: #1570ef;
+  --color-blue-700: #175cd3;
+  --color-blue-900: #194185;
+
+  --color-sky-1: #f3f9ff;
+
+  --color-black-1: #00214f;
+  --color-black-2: #344054;
+
+  --color-gray-25: #fcfcfd;
+  --color-gray-200: #eaecf0;
+  --color-gray-300: #d0d5dd;
+  --color-gray-500: #667085;
+  --color-gray-600: #475467;
+  --color-gray-700: #344054;
+  --color-gray-900: #101828;
+
+  --background-image-bank-gradient: linear-gradient(
+    90deg,
+    #0179fe 0%,
+    #4893ff 100%
+  );
+  --background-image-bank-mesh: url("/icons/gradient-mesh.svg");
+
+  --shadow-profile:
+    0px 12px 16px -4px rgba(16, 24, 40, 0.08),
+    0px 4px 6px -2px rgba(16, 24, 40, 0.03);
+  --shadow-creditCard: 8px 10px 16px 0px rgba(0, 0, 0, 0.05);
 }
 
 @layer utilities {
@@ -83,19 +132,63 @@
   }
 
   .root-layout {
-    @apply flex h-16 items-center justify-between p-5 shadow-sm sm:p-8 md:hidden
+    @apply flex h-16 items-center justify-between p-5 shadow-sm sm:p-8 md:hidden;
   }
 
   .mobile-logo {
-    @apply text-[26px] font-IBMPlexSerif font-bold text-blue-950  
+    @apply text-[26px] font-IBMPlexSerif font-bold text-blue-950;
   }
 
   .mobile-nav-sheet {
-    @apply flex flex-col justify-between overflow-y-auto  h-screen
+    @apply flex flex-col justify-between overflow-y-auto  h-screen;
   }
 
   .mobile-sheet_close {
-    @apply flex gap-3 items-center p-4 rounded-lg w-full max-w-60
+    @apply flex gap-3 items-center p-4 rounded-lg w-full max-w-60;
+  }
+
+  .right-sidebar {
+    @apply hidden h-screen max-h-screen flex-col border-1 border-gray-200 xl:flex min-w-[300px] 2xl:min-w-[355px] xl:overflow-y-scroll;
+  }
+
+  .profile-banner {
+    @apply h-[120px] w-full bg-cover bg-no-repeat bg-bank-mesh;
+  }
+
+  .profile {
+    @apply relative flex px-6 max-xl:justify-center;
+  }
+
+  .profile-image {
+    @apply flex items-center justify-center absolute -top-8 size-24 rounded-full  bg-gray-100 border-8 border-white p-2 shadow-profile;
+  }
+
+  .profile-details {
+    @apply flex flex-col pt-24;
+  }
+
+  .profile-name {
+    @apply text-[24px] leading-[30px] font-semibold text-gray-900;
+  }
+
+  .profile-email {
+    @apply text-[16px] font-normal text-gray-600;
+  }
+
+  .banks {
+    @apply flex flex-col justify-between gap-8 px-6 py-8;
+  }
+
+  .bank-card {
+    @apply relative flex h-[190px] w-full max-w-[320px] justify-between rounded-[20px] border border-white bg-bank-gradient shadow-creditCard;
+  }
+
+  .bank-card_content {
+    @apply relative z-10 flex size-full max-w-[228px] flex-col justify-between rounded-l-[20px] bg-gray-700 bg-bank-gradient px-5 pb-4 pt-5;
+  }
+
+  .bank-card_icon {
+    @apply flex size-full flex-1 flex-col items-end justify-between rounded-r-[20px] bg-bank-gradient bg-cover bg-center bg-no-repeat py-5 pr-5;
   }
 }
 

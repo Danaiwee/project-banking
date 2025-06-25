@@ -27,6 +27,34 @@ declare global {
     dateOfBirth: string;
     ssn: string;
   }
+
+  interface Transaction {
+    id: string;
+    $id: string;
+    name: string;
+    paymentChannel: string;
+    type: string;
+    accountId: string;
+    amount: number;
+    pending: boolean;
+    category: string;
+    date: string;
+    image: string;
+    $createdAt: string;
+    channel: string;
+    senderBankId: string;
+    reveiverBankId: string;
+  }
+
+  interface Bank {
+    $id: string;
+    accountId: string;
+    bankId: string;
+    accessToken: string;
+    fundingSourceUrl: string;
+    userId: string;
+    sharableId: string;
+  }
 }
 
 export {};
