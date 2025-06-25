@@ -159,6 +159,27 @@ const AuthForm = ({ type }: AuthFormProps) => {
               </div>
             </form>
           </Form>
+          <div className="flex items-center justify-center gap-1">
+            {type === "sign-in" ? (
+              <>
+                <p className="text-sm font-bold text-gray-500">
+                  Don&apos;t have an account?
+                </p>
+                <Link href="/sign-up" className="text-blue-500 font-bold">
+                  Sign up
+                </Link>
+              </>
+            ) : (
+              <>
+                <p className="text-sm font-bold text-gray-500">
+                  Already have an account?
+                </p>
+                <Link href="/sign-in" className="text-blue-500 font-bold">
+                  Sign in
+                </Link>
+              </>
+            )}
+          </div>
         </>
       )}
     </section>
