@@ -81,6 +81,22 @@
   .sidebar-label {
     @apply text-[16px] leading-[24px] font-semibold text-gray-700 max-xl:hidden;
   }
+
+  .root-layout {
+    @apply flex h-16 items-center justify-between p-5 shadow-sm sm:p-8 md:hidden
+  }
+
+  .mobile-logo {
+    @apply text-[26px] font-IBMPlexSerif font-bold text-blue-950  
+  }
+
+  .mobile-nav-sheet {
+    @apply flex flex-col justify-between overflow-y-auto  h-screen
+  }
+
+  .mobile-sheet_close {
+    @apply flex gap-3 items-center p-4 rounded-lg w-full max-w-60
+  }
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
