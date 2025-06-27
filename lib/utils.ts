@@ -1,11 +1,11 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
-export const formatDateTime = (dateString: Date) => {
+export function formatDateTime(dateString: Date) {
   const dateTimeOptions: Intl.DateTimeFormatOptions = {
     weekday: "short", // abbreviated weekday name (e.g., 'Mon')
     month: "short", // abbreviated month name (e.g., 'Oct')
@@ -60,7 +60,7 @@ export const formatDateTime = (dateString: Date) => {
     dateOnly: formattedDate,
     timeOnly: formattedTime,
   };
-};
+}
 
 export function formatAmount(amount: number): string {
   const formatter = new Intl.NumberFormat("en-US", {
@@ -70,4 +70,9 @@ export function formatAmount(amount: number): string {
   });
 
   return formatter.format(amount);
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function parseStringify(value: any) {
+  return JSON.parse(JSON.stringify(value));
 }

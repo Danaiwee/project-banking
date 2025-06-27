@@ -1,13 +1,14 @@
+import { redirect } from "next/navigation";
+
 import Header from "@/components/header/Header";
 import TotalBalanceBox from "@/components/header/TotalBalanceBox";
 import RightSidebar from "@/components/RightSidebar";
+import { ROUTES } from "@/constants/routes";
+import { getLoggedInUser } from "@/lib/actions/user.action";
 
-export default function HomePage() {
-  const loggedIn = {
-    firstName: "Danai",
-    lastName: "Weerayutwattana",
-    email: "danai.weerayut@gmail.com",
-  };
+export default async function HomePage() {
+  const user = await getLoggedInUser();
+  if (!user) redirect(ROUTES.SIGN_IN);
 
   return (
     <section className="home no-scrollbar">
@@ -16,7 +17,7 @@ export default function HomePage() {
           <Header
             type="greeting"
             title="Welcome"
-            user={loggedIn?.firstname || "Guest"}
+            user={user?.name || "Guest"}
             description="Access and manage your account and transactions efficiently"
           />
 
@@ -30,7 +31,7 @@ export default function HomePage() {
       </div>
 
       <RightSidebar
-        user={loggedIn}
+        user={user}
         transactions={[]}
         banks={[{ currentBalance: 3750.0 }, { currentBalance: 1270.55 }]}
       />

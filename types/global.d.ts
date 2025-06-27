@@ -1,3 +1,5 @@
+import { NextResponse } from "next/server";
+
 declare global {
   interface Account {
     id: string;
@@ -12,21 +14,7 @@ declare global {
     sharableId: string;
   }
 
-  interface User {
-    $id: string;
-    email: string;
-    userId: string;
-    dwollaCustomerUrl: string;
-    dwollaCustomerId: string;
-    firstName: string;
-    lastName: string;
-    address1: string;
-    city: string;
-    state: string;
-    postalCode: string;
-    dateOfBirth: string;
-    ssn: string;
-  }
+  type User = Models.User<Models.Preferences>;
 
   interface Transaction {
     id: string;
@@ -55,6 +43,22 @@ declare global {
     userId: string;
     sharableId: string;
   }
+
+  type ActionResponse<T = null> = {
+    success: boolean;
+    data?: T;
+    errors?: {
+      message?: string;
+      details?: Record<string, string[]>;
+    };
+    status?: number;
+  };
+
+  type SuccessResponse<T = null> = ActionResponse<T> & { success: true };
+  type ErrorResponse = ActionResponse<undefined & { success: true }>;
+
+  type APIResponse = NextResponse<SuccessResponse<T> | ErrorResponse>;
+  type APIErrorResponse = NextResponse<ErrorResponse>;
 }
 
 export {};

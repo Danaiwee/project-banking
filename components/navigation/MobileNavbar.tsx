@@ -3,10 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Models } from "node-appwrite";
 
 import { sidebarLinks } from "@/constants";
 import { cn } from "@/lib/utils";
 
+import Footer from "./Footer";
 import {
   Sheet,
   SheetClose,
@@ -15,7 +17,11 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 
-const MobileNavbar = () => {
+interface MobileNavbarProps {
+  user: Models.User<Models.Preferences> | null;
+}
+
+const MobileNavbar = ({ user }: MobileNavbarProps) => {
   const pathname = usePathname();
 
   return (
@@ -85,7 +91,7 @@ const MobileNavbar = () => {
                 USER
               </nav>
             </SheetClose>
-            FOOTER
+            <Footer user={user} type="mobile" />
           </div>
         </SheetContent>
       </Sheet>

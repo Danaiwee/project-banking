@@ -4,10 +4,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
+import { signIn, signUp } from "@/lib/actions/user.action";
+import logger from "@/lib/logger";
 import { authFormSchema } from "@/lib/validations";
 
 import CustomInput from "./CustomInput";
@@ -19,6 +23,7 @@ interface AuthFormProps {
 }
 
 const AuthForm = ({ type }: AuthFormProps) => {
+  const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,9 +38,40 @@ const AuthForm = ({ type }: AuthFormProps) => {
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log("Test 1");
-    console.log(data);
-    console.log(form.formState.errors);
+    setIsLoading(true);
+    try {
+      if (type === "sign-up") {
+        const newUser = await signUp(data);
+        if (!newUser) throw new Error("Error in sign up");
+
+        setUser(newUser);
+        toast("Success", {
+          description: "Sign up successfully",
+        });
+
+        router.push("/");
+      }
+
+      if (type === "sign-in") {
+        const { email, password } = data;
+
+        const response = await signIn({ email, password });
+
+        if (response) {
+          toast("Success", {
+            description: "Sign in successfully",
+          });
+          router.push("/");
+        }
+      }
+    } catch (error) {
+      toast("Error", {
+        description: `An error occurred while ${type === "sign-in" ? "sign in" : "sign up"}`,
+      });
+      logger.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

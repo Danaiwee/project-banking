@@ -37,6 +37,7 @@ const CustomInput = ({
                 type={name === "password" ? "password" : "text"}
                 {...field}
                 id={name}
+                name={name}
               />
             </FormControl>
             <FormMessage className="form-message mt-2" />

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const inter = localFont({
   src: "./fonts/InterVF.ttf",
@@ -35,6 +36,7 @@ export default function RootLayout({
         className={`${inter.variable} ${IBMPlexSerif.variable} antialiased`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );
