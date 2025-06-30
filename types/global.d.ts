@@ -59,6 +59,8 @@ declare global {
 
   type APIResponse = NextResponse<SuccessResponse<T> | ErrorResponse>;
   type APIErrorResponse = NextResponse<ErrorResponse>;
+
 }
+
 
 export {};

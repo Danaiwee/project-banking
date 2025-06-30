@@ -76,3 +76,15 @@ export function formatAmount(amount: number): string {
 export function parseStringify(value: any) {
   return JSON.parse(JSON.stringify(value));
 }
+
+export function encryptId(id: string) {
+  return atob(id);
+}
+
+export function extractCustomerIdFromUrl(url: string) {
+  const parts = url.split("/");
+
+  const customerId = parts[parts.length - 1];
+
+  return customerId;
+}

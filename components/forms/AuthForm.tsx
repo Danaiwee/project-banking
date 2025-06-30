@@ -10,11 +10,13 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
+import { ROUTES } from "@/constants/routes";
 import { signIn, signUp } from "@/lib/actions/user.action";
 import logger from "@/lib/logger";
 import { authFormSchema } from "@/lib/validations";
 
 import CustomInput from "./CustomInput";
+import PlaidLink from "../plaid/PlaidLink";
 import { Button } from "../ui/button";
 import { Form } from "../ui/form";
 
@@ -41,15 +43,26 @@ const AuthForm = ({ type }: AuthFormProps) => {
     setIsLoading(true);
     try {
       if (type === "sign-up") {
-        const newUser = await signUp(data);
+        const userData = {
+          firstName: data.firstName!,
+          lastName: data.lastName!,
+          address1: data.address1!,
+          city: data.city!,
+          state: data.state!,
+          postalCode: data.postalCode!,
+          dateOfBirth: data.dateOfBirth!,
+          ssn: data.ssn!,
+          email: data.email,
+          password: data.password,
+        };
+
+        const newUser = await signUp(userData);
         if (!newUser) throw new Error("Error in sign up");
 
         setUser(newUser);
         toast("Success", {
           description: "Sign up successfully",
         });
-
-        router.push("/");
       }
 
       if (type === "sign-in") {
@@ -61,7 +74,8 @@ const AuthForm = ({ type }: AuthFormProps) => {
           toast("Success", {
             description: "Sign in successfully",
           });
-          router.push("/");
+
+          router.push(ROUTES.HOME);
         }
       }
     } catch (error) {
@@ -102,7 +116,9 @@ const AuthForm = ({ type }: AuthFormProps) => {
       </header>
 
       {user ? (
-        <div className="flex flex-col gap-4">{/* Paid Link */}</div>
+        <div className="flex flex-col gap-4">
+          <PlaidLink user={user} variant="primary" />
+        </div>
       ) : (
         <>
           <Form {...form}>
