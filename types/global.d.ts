@@ -11,7 +11,7 @@ declare global {
     name: string;
     type: string;
     appwriteItemId: string;
-    sharableId: string;
+    shareableId: string;
   }
 
   type User = Models.User<Models.Preferences>;
@@ -41,7 +41,7 @@ declare global {
     accessToken: string;
     fundingSourceUrl: string;
     userId: string;
-    sharableId: string;
+    shareableId: string;
   }
 
   type ActionResponse<T = null> = {
@@ -59,8 +59,6 @@ declare global {
 
   type APIResponse = NextResponse<SuccessResponse<T> | ErrorResponse>;
   type APIErrorResponse = NextResponse<ErrorResponse>;
-
 }
-
 
 export {};
