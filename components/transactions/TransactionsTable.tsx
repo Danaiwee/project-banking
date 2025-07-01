@@ -45,7 +45,7 @@ const TransactionsTable = ({ transactions }: TransactionsTableProps) => {
           return (
             <TableRow
               key={id}
-              className={`${isDebit ? "bg-[#FFFBFA]" : "bg-[#F6FEF9]"} h-15`}
+              className={`${isDebit ? "bg-[#FFFBFA]" : "bg-[#F6FEF9]"} h-20`}
             >
               <TableCell className="max-w-[250px] pl-2 pr-10">
                 <div className="flex items-center gap-3">

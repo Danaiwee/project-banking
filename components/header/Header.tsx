@@ -1,7 +1,7 @@
 interface HeaderProps {
-  type: string;
+  type?: string;
   title: string;
-  user: string;
+  user?: string;
   description: string;
 }
 
