@@ -23,7 +23,7 @@ export default async function HomePage({ searchParams }: RouteParams) {
   const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
 
   // const account = await getAccount({ appwriteItemId });
-
+  
   return (
     <section className="home no-scrollbar">
       <div className="home-content no-scrollbar">
@@ -54,6 +54,7 @@ export default async function HomePage({ searchParams }: RouteParams) {
         user={user}
         transactions={[]}
         banks={accountsData?.slice(0, 2)}
+        accounts={accountsData}
       />
     </section>
   );

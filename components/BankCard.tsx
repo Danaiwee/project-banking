@@ -10,6 +10,7 @@ interface BankCardProps {
 }
 
 const BankCard = ({ account, userName, showBalance = true }: BankCardProps) => {
+  const {mask} = account;
   return (
     <div className="flex flex-col">
       <Link href="/" className="bank-card">
@@ -32,7 +33,7 @@ const BankCard = ({ account, userName, showBalance = true }: BankCardProps) => {
             </div>
             <p className="text-[10px] font-semibold tracking-[1.1px] text-white">
               ●●●● ●●●● ●●●●
-              <span className="text-[10px]">&nbsp;1234</span>
+              <span className="text-[10px]">&nbsp;{mask}</span>
             </p>
           </article>
         </div>

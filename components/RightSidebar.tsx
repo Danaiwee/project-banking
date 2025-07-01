@@ -7,9 +7,15 @@ interface RightSidebarProps {
   user: User | null;
   transactions: Transaction[];
   banks: Bank[] & Account[];
+  accounts: Account[];
 }
 
-const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
+const RightSidebar = ({
+  user,
+  transactions,
+  banks,
+  accounts,
+}: RightSidebarProps) => {
   return (
     <aside className="right-sidebar noscrollbar">
       <section className="flex flex-col pb-8 text-indigo-500">
@@ -47,25 +53,25 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
 
         {banks?.length > 0 && (
           <div className="relative flex flex-1 flex-col items-center justify-center gap-5">
-            <div className="relative z-10">
-              <BankCard
-                key={banks[0].$id}
-                account={banks[0]}
-                userName={`${user?.firstName} ${user?.lastName}`}
-                showBalance={false}
-              />
+            {accounts?.map((account: Account, index) => {
+              const topValue = index * 8;
+              const zValue = index * 10;
+              const rightValue = index * 2;
 
-              {banks[1] && (
-                <div className="absolute right-0 top-8 -z-10 w-[90%]">
+              return (
+                <div
+                  className={`absolute right-${rightValue} top-${topValue} -z-${zValue} w-[90%]`}
+                  key={account.id}
+                >
                   <BankCard
-                    key={banks[1].$id}
-                    account={banks[1]}
+                    key={account.id}
+                    account={account}
                     userName={`${user?.firstName} ${user?.lastName}`}
                     showBalance={false}
                   />
                 </div>
-              )}
-            </div>
+              );
+            })}
           </div>
         )}
       </section>
