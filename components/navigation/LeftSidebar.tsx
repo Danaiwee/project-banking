@@ -8,6 +8,7 @@ import { sidebarLinks } from "@/constants";
 import { cn } from "@/lib/utils";
 
 import Footer from "./Footer";
+import PlaidLink from "../plaid/PlaidLink";
 
 interface LeftSideBarProps {
   user: User | null;
@@ -53,7 +54,7 @@ const LeftSidebar = ({ user }: LeftSideBarProps) => {
             </Link>
           );
         })}
-        USER
+        <PlaidLink user={user} />
       </nav>
       <Footer user={user} />
     </section>

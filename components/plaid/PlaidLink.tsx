@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import {
@@ -19,10 +20,11 @@ import { Button } from "../ui/button";
 
 interface PlaidLinkProps {
   user: User | null;
-  variant: string;
+  variant?: string;
+  isMobile?: boolean;
 }
 
-const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
+const PlaidLink = ({ user, variant, isMobile = false }: PlaidLinkProps) => {
   const router = useRouter();
 
   // 1.Create Token State
@@ -70,9 +72,23 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
           Connect Bank
         </Button>
       ) : variant === "ghost" ? (
-        <Button className="plaidlink-ghost">Connect Bank</Button>
+        <Button className="plaidlink-ghost" onClick={() => open()}>
+          Connect Bank
+        </Button>
       ) : (
-        <Button>Connect bank</Button>
+        <Button className="plaidlink-default" onClick={() => open()}>
+          <Image
+            src="/icons/connect-bank.svg"
+            width={24}
+            height={24}
+            alt="Bank icon"
+          />
+          <p
+            className={`text-[16px] font-semibold text-black-2 ${isMobile ? "" : "hidden xl:flex"} }`}
+          >
+            Connect bank
+          </p>
+        </Button>
       )}
     </>
   );

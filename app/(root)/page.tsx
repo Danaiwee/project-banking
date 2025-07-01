@@ -8,7 +8,6 @@ import { TRANSACTIONS } from "@/constants";
 import { ROUTES } from "@/constants/routes";
 import { getAccounts } from "@/lib/actions/bank.action";
 import { getLoggedInUser } from "@/lib/actions/user.action";
-import { getTransactionStatus } from "@/lib/utils";
 
 export default async function HomePage({ searchParams }: RouteParams) {
   const { id, page } = await searchParams;
@@ -24,8 +23,6 @@ export default async function HomePage({ searchParams }: RouteParams) {
   const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
 
   // const account = await getAccount({ appwriteItemId });
-
-  console.log(getTransactionStatus("2025-07-01"));
 
   return (
     <section className="home no-scrollbar">

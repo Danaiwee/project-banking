@@ -287,7 +287,31 @@
   .category-badge {
     @apply flex items-center justify-center truncate w-fit gap-1 rounded-2xl border-[1.5px] pl-1.5 pr-2;
   }
+
+  .plaidlink-default {
+    @apply flex justify-start cursor-pointer gap-3 rounded-lg bg-transparent flex-row hover:bg-transparent border-none outline-none
+  }
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #dddddd;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #5c5c7b;
+  border-radius: 50px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #7878a3;
+}
+
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {

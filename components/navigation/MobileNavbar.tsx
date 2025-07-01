@@ -9,6 +9,7 @@ import { sidebarLinks } from "@/constants";
 import { cn } from "@/lib/utils";
 
 import Footer from "./Footer";
+import PlaidLink from "../plaid/PlaidLink";
 import {
   Sheet,
   SheetClose,
@@ -88,7 +89,7 @@ const MobileNavbar = ({ user }: MobileNavbarProps) => {
                     </SheetClose>
                   );
                 })}
-                USER
+                <PlaidLink user={user} isMobile />
               </nav>
             </SheetClose>
             <Footer user={user} type="mobile" />

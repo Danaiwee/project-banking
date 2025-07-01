@@ -17,6 +17,10 @@ declare global {
 
   type User = Models.User<Models.Preferences>;
 
+  interface UserType extends User {
+    $id: string;
+  }
+
   interface Transaction {
     id: string;
     $id: string;

@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { TRANSACTIONS } from "@/constants";
 import { ROUTES } from "@/constants/routes";
 
 import BankInfo from "./BankInfo";
@@ -34,12 +33,11 @@ const RecentTransaction = ({
       </header>
 
       <Tabs defaultValue={appwriteItemId} className="w-full">
-        <TabsList className="recent-transactions-tablist">
+        <TabsList className="recent-transactions-tablist custom-scrollbar">
           {accounts.map((account: Account) => (
             <TabsTrigger
               key={account.id}
               value={account.appwriteItemId}
-              className="py-7"
             >
               <BankTabItem
                 key={account.id}
@@ -62,7 +60,7 @@ const RecentTransaction = ({
               type="full"
             />
 
-            <TransactionsTable transactions={TRANSACTIONS} />
+            <TransactionsTable transactions={transactions} />
           </TabsContent>
         ))}
       </Tabs>
