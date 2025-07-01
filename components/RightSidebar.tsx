@@ -52,15 +52,11 @@ const RightSidebar = ({
         </div>
 
         {banks?.length > 0 && (
-          <div className="relative flex flex-1 flex-col items-center justify-center gap-5">
-            {accounts?.map((account: Account, index) => {
-              const topValue = index * 8;
-              const zValue = index * 10;
-              const rightValue = index * 2;
-
+          <div className="flex flex-col gap-2">
+            {accounts?.map((account: Account) => {
               return (
                 <div
-                  className={`absolute right-${rightValue} top-${topValue} -z-${zValue} w-[90%]`}
+                  className={`w-full relative`}
                   key={account.id}
                 >
                   <BankCard

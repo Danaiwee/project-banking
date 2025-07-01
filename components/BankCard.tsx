@@ -10,7 +10,7 @@ interface BankCardProps {
 }
 
 const BankCard = ({ account, userName, showBalance = true }: BankCardProps) => {
-  const {mask} = account;
+  const { mask } = account;
   return (
     <div className="flex flex-col">
       <Link href="/" className="bank-card">
