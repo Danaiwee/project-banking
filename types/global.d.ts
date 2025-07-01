@@ -12,6 +12,7 @@ declare global {
     type: string;
     appwriteItemId: string;
     shareableId: string;
+    subtype: string;
   }
 
   type User = Models.User<Models.Preferences>;
@@ -59,6 +60,11 @@ declare global {
 
   type APIResponse = NextResponse<SuccessResponse<T> | ErrorResponse>;
   type APIErrorResponse = NextResponse<ErrorResponse>;
+
+  interface RouteParams {
+    params: Promise<Record<string, string>>;
+    searchParams: Promise<Record<string, string>>;
+  }
 }
 
 export {};

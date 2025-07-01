@@ -3,12 +3,29 @@ import { redirect } from "next/navigation";
 import Header from "@/components/header/Header";
 import TotalBalanceBox from "@/components/header/TotalBalanceBox";
 import RightSidebar from "@/components/RightSidebar";
+import RecentTransaction from "@/components/transactions/RecentTransaction";
+import { TRANSACTIONS } from "@/constants";
 import { ROUTES } from "@/constants/routes";
+import { getAccounts } from "@/lib/actions/bank.action";
 import { getLoggedInUser } from "@/lib/actions/user.action";
+import { getTransactionStatus } from "@/lib/utils";
 
-export default async function HomePage() {
+export default async function HomePage({ searchParams }: RouteParams) {
+  const { id, page } = await searchParams;
+  const currentPage = Number(page) || 1;
+
   const user = await getLoggedInUser();
   if (!user) redirect(ROUTES.SIGN_IN);
+
+  const accounts = await getAccounts({ userId: user.$id });
+  if (!accounts) return null;
+
+  const accountsData = accounts?.data;
+  const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
+
+  // const account = await getAccount({ appwriteItemId });
+
+  console.log(getTransactionStatus("2025-07-01"));
 
   return (
     <section className="home no-scrollbar">
@@ -17,23 +34,29 @@ export default async function HomePage() {
           <Header
             type="greeting"
             title="Welcome"
-            user={user?.name || "Guest"}
+            user={user?.firstName || "Guest"}
             description="Access and manage your account and transactions efficiently"
           />
 
           <TotalBalanceBox
-            accounts={[]}
-            totalBanks={1}
-            totalCurrentBalance={3759.33}
+            accounts={accountsData}
+            totalBanks={accounts.totalBanks}
+            totalCurrentBalance={accounts.totalCurrentBalance}
           />
         </header>
-        RECENT TRANSACTION
+
+        <RecentTransaction
+          accounts={accountsData}
+          transactions={TRANSACTIONS}
+          appwriteItemId={appwriteItemId}
+          page={currentPage}
+        />
       </div>
 
       <RightSidebar
         user={user}
         transactions={[]}
-        banks={[{ currentBalance: 3750.0 }, { currentBalance: 1270.55 }]}
+        banks={accountsData?.slice(0, 2)}
       />
     </section>
   );

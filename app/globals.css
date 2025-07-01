@@ -253,7 +253,39 @@
   }
 
   .plaidlink-ghost {
-    @apply text-[16px] flex items-center justify-center gap-3 rounded-lg px-3 py-6 hover:bg-gray-800
+    @apply text-[16px] flex items-center justify-center gap-3 rounded-lg px-3 py-6 hover:bg-gray-800;
+  }
+
+  .recent-transactions {
+    @apply w-full flex flex-col gap-6;
+  }
+
+  .recent-transactions-label {
+    @apply text-[20px] md:text-[24px] font-semibold text-gray-900;
+  }
+
+  .view-all-btn {
+    @apply text-[14px] rounded-lg border border-gray-300 px-4 py-2.5 font-semibold text-gray-700;
+  }
+
+  .recent-transactions-tablist {
+    @apply mb-8 w-full flex flex-nowrap;
+  }
+
+  .banktab-item {
+    @apply gap-[18px] border-b-2 flex px-2 py-2 sm:px-4 transition-all;
+  }
+
+  .bank-info {
+    @apply gap-[18px] flex p-4 transition-all border bg-blue-25 border-transparent rounded-md;
+  }
+
+  .bank-info_content {
+    @apply flex flex-1 items-center justify-between gap-2 overflow-hidden;
+  }
+
+  .category-badge {
+    @apply flex items-center justify-center truncate w-fit gap-1 rounded-2xl border-[1.5px] pl-1.5 pr-2;
   }
 }
 

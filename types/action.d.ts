@@ -61,3 +61,36 @@ interface createBankAccountProps {
   fundingSourceUrl: string;
   shareableId: string;
 }
+
+interface GetUserInfoParams {
+  userId: string;
+}
+
+interface GetBanksParams {
+  userId: string;
+}
+
+interface GetAccountsParams {
+  userId: string;
+}
+
+interface InstitutionParams {
+  institutionId: string;
+}
+
+interface GetAccountParams {
+  appwriteItemId: string;
+}
+
+interface GetBankParams {
+  documentId: string;
+}
+
+interface GetTransactionByBankIdParams {
+  bankId: string;
+}
+
+interface GetTransactionsParams {
+  accessToken: string;
+}
+
