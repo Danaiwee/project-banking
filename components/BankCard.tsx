@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { ROUTES } from "@/constants/routes";
 import { formatAmount } from "@/lib/utils";
+
+import Copy from "./Copy";
 
 interface BankCardProps {
   account: Account;
@@ -10,10 +13,13 @@ interface BankCardProps {
 }
 
 const BankCard = ({ account, userName, showBalance = true }: BankCardProps) => {
-  const { mask } = account;
+  const { mask, shareableId, appwriteItemId } = account;  
   return (
     <div className="flex flex-col">
-      <Link href="/" className="bank-card">
+      <Link
+        href={ROUTES.TRANSACTION_HISTORY(appwriteItemId)}
+        className="bank-card"
+      >
         <div className="bank-card_content">
           <div>
             <h1 className="text-[16px] font-semibold text-white">
@@ -63,6 +69,8 @@ const BankCard = ({ account, userName, showBalance = true }: BankCardProps) => {
           className="absolute top-0 left-0"
         />
       </Link>
+
+      {showBalance && <Copy title={shareableId} />}
     </div>
   );
 };
