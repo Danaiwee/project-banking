@@ -6,6 +6,7 @@ import { getBank, getBanks } from "./user.action";
 import handleError from "../handlers/error";
 import { plaidClient } from "../plaid";
 import { parseStringify } from "../utils";
+import { getTransactionByBankId } from "./transaction.action";
 
 export async function getInstitution({ institutionId }: InstitutionParams) {
   try {
@@ -113,26 +114,27 @@ export async function getAccount({ appwriteItemId }: GetAccountParams) {
 
     const accountData = accountResponse.data.accounts[0];
 
-    // const transferTransactionsData = await getTransactionByBankId({
-    //   bankId: bank.$id,
-    // });
+    const transferTransactionsData = await getTransactionByBankId({
+      bankId: bank.$id,
+    });
 
-    // const transferTransactions = transferTransactionsData.documents.map(
-    //   (transferData: Transaction) => ({
-    //     id: transferData.$id,
-    //     name: transferData.name!,
-    //     amount: transferData.amount!,
-    //     date: transferData.$createdAt,
-    //     paymentChannel: transferData.channel,
-    //     category: transferData.category,
-    //     type: transferData.senderBankId === bank.$id ? "debit" : "credit",
-    //   })
-    // );
+    const transferTransactions = transferTransactionsData.documents.map(
+      (transferData: Transaction) => ({
+        id: transferData.$id,
+        name: transferData.name!,
+        amount: transferData.amount!,
+        date: transferData.$createdAt,
+        paymentChannel: transferData.channel,
+        category: transferData.category,
+        type: transferData.senderBankId === bank.$id ? "debit" : "credit",
+      })
+    );
 
     const institution = await getInstitution({
       institutionId: accountResponse.data.item.institution_id!,
     });
 
+    // This is Plaid's sample transactions
     // const transactions = await getTransactions({
     //   accessToken: bank?.accessToken,
     // });
@@ -150,12 +152,14 @@ export async function getAccount({ appwriteItemId }: GetAccountParams) {
       appwriteItemId: bank.$id,
     };
 
+    // This is the combination between real transactions and mock up transactions
     // const allTransactions = [...transactions].sort(
     //   (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     // );
 
     return parseStringify({
       data: account,
+      transactions: transferTransactions,
     });
   } catch (error) {
     return handleError(error) as ErrorResponse;

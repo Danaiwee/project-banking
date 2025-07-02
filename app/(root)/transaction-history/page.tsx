@@ -2,7 +2,6 @@ import { redirect } from "next/navigation";
 
 import Header from "@/components/header/Header";
 import TransactionsTable from "@/components/transactions/TransactionsTable";
-import { TRANSACTIONS } from "@/constants";
 import { ROUTES } from "@/constants/routes";
 import { getAccount, getAccounts } from "@/lib/actions/bank.action";
 import { getLoggedInUser } from "@/lib/actions/user.action";
@@ -24,6 +23,7 @@ const HistoryPage = async ({ searchParams }: RouteParams) => {
   const account = await getAccount({ appwriteItemId });
 
   const { name, officialName, mask, currentBalance } = account.data;
+  const transactions = account.transactions;
 
   return (
     <div className="transactions">
@@ -53,7 +53,7 @@ const HistoryPage = async ({ searchParams }: RouteParams) => {
         </div>
 
         <section className="flex w-full flex-col gap-6">
-          <TransactionsTable transactions={TRANSACTIONS} />
+          <TransactionsTable transactions={transactions} />
         </section>
       </div>
     </div>

@@ -190,7 +190,7 @@ export const TRANSACTIONS_CATEGORY_STYLES = {
   Transfer: {
     borderColor: "border-red-700",
     backgroundColor: "bg-red-500",
-    textColor: "text-red-100",
+    textColor: "text-red-500",
     chipBackgroundColor: "bg-red-50",
   },
   Processing: {
