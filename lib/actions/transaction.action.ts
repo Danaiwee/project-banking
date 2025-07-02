@@ -1,6 +1,6 @@
 "use server";
 
-import { Query } from "node-appwrite";
+import { ID, Query } from "node-appwrite";
 
 import { createAdminClient } from "../appwrite";
 import handleError from "../handlers/error";
@@ -38,6 +38,27 @@ export async function getTransactionByBankId({
     };
 
     return parseStringify(transactions);
+  } catch (error) {
+    return handleError(error) as ErrorResponse;
+  }
+}
+
+export async function createTransaction(transaction: CreateTransactionParams) {
+  try {
+    const { database } = await createAdminClient();
+
+    const newTransaction = await database.createDocument(
+      DATABASE_ID!,
+      TRANSACTION_COLLECTION_ID!,
+      ID.unique(),
+      {
+        channel: "online",
+        category: "Transfer",
+        ...transaction,
+      }
+    );
+
+    return parseStringify(newTransaction);
   } catch (error) {
     return handleError(error) as ErrorResponse;
   }

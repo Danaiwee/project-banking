@@ -74,3 +74,15 @@ export const authFormSchema = (type: string) =>
         message: "Password must contain at least one special character.",
       }),
   });
+
+export const paymentFormSchema = z.object({
+  email: z.string().email({ message: "Invalid email address." }),
+  name: z.string().min(4, { message: "Transfer note is too short" }),
+  amount: z.string().min(2, { message: "Amount is too short." }),
+  senderBank: z
+    .string()
+    .min(4, { message: "Please select a valid bank account" }),
+  shareableId: z
+    .string()
+    .min(8, { message: "Please select a valid shareable id" }),
+});

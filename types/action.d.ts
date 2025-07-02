@@ -94,3 +94,16 @@ interface GetTransactionsParams {
   accessToken: string;
 }
 
+interface GetBankByAccountIdParams {
+  accountId: string;
+}
+
+interface CreateTransactionParams {
+  name: string;
+  amount: string;
+  senderId: string;
+  senderBankId: string;
+  receiverId: string;
+  receiverBankId: string;
+  email: string;
+}

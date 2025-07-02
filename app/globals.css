@@ -305,11 +305,35 @@
   }
 
   .transactions-account-balance {
-    @apply flex flex-col items-center justify-center gap-2 rounded-md bg-blue-25/20 px-4 py-2 text-white
+    @apply flex flex-col items-center justify-center gap-2 rounded-md bg-blue-25/20 px-4 py-2 text-white;
   }
 
   .my-banks {
     @apply flex h-screen max-h-screen w-full flex-col gap-8 bg-gray-25 p-8 xl:py-12;
+  }
+
+  .payment-transfer {
+    @apply flex flex-col overflow-y-scroll bg-gray-25 p-8 md:max-h-screen xl:py-12;
+  }
+
+  .payment-transfer_form-item {
+    @apply w-full flex max-w-[850px] flex-col gap-3 md:flex-row lg:gap-8;
+  }
+
+  .payment-transfer_form-content {
+    @apply w-full flex max-w-[280px] flex-col gap-2;
+  }
+
+  .payment-transfer_form-details {
+    @apply flex flex-col gap-1 border-t border-gray-200 pb-5 pt-6;
+  }
+
+  .payment-transfer_btn-box {
+    @apply w-full flex mt-5 max-w-[850px] gap-3 border-gray-200 py-5
+  }
+  
+  .payment-transfer_btn {
+    @apply text-[14px] w-full bg-bank-gradient font-semibold text-white shadow-form
   }
 }
 

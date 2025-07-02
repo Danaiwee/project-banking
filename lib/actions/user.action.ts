@@ -284,3 +284,23 @@ export async function getBank({ documentId }: GetBankParams) {
     return handleError(error) as ErrorResponse;
   }
 }
+
+export async function getBankByAccountId({
+  accountId,
+}: GetBankByAccountIdParams) {
+  try {
+    const { database } = await createAdminClient();
+
+    const bank = await database.listDocuments(
+      DATABASE_ID!,
+      BANK_COLLECTION_ID!,
+      [Query.equal("accountId", [accountId])]
+    );
+
+    if (!bank) throw new NotFoundError("Bank");
+
+    return parseStringify(bank.documents[0]);
+  } catch (error) {
+    return handleError(error) as ErrorResponse;
+  }
+}
