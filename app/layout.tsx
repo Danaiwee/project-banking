@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-
 import "./globals.css";
 import { Toaster } from "sonner";
+
+export const dynamic = "force-dynamic";
 
 const inter = localFont({
   src: "./fonts/InterVF.ttf",
