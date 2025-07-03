@@ -5,6 +5,7 @@ import { ROUTES } from "@/constants/routes";
 import BankInfo from "./BankInfo";
 import BankTabItem from "./BankTabItem";
 import TransactionsTable from "./TransactionsTable";
+import Pagination from "../Pagination";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 
 interface RecentTransactionProps {
@@ -20,6 +21,17 @@ const RecentTransaction = ({
   appwriteItemId,
   page,
 }: RecentTransactionProps) => {
+  const dataPerPage = 10;
+  const totalPages = Math.ceil(transactions.length / dataPerPage);
+
+  const indexOfLastTrasactions = page * dataPerPage;
+  const indexOfFirstTransactions = indexOfLastTrasactions - dataPerPage;
+
+  const currentTrnsactions = transactions.slice(
+    indexOfFirstTransactions,
+    indexOfLastTrasactions
+  );
+
   return (
     <section className="recent-transactions">
       <header className="flex-between">
@@ -35,10 +47,7 @@ const RecentTransaction = ({
       <Tabs defaultValue={appwriteItemId} className="w-full">
         <TabsList className="recent-transactions-tablist custom-scrollbar">
           {accounts.map((account: Account) => (
-            <TabsTrigger
-              key={account.id}
-              value={account.appwriteItemId}
-            >
+            <TabsTrigger key={account.id} value={account.appwriteItemId}>
               <BankTabItem
                 key={account.id}
                 account={account}
@@ -60,9 +69,11 @@ const RecentTransaction = ({
               type="full"
             />
 
-            <TransactionsTable transactions={transactions} />
+            <TransactionsTable transactions={currentTrnsactions} />
           </TabsContent>
         ))}
+
+        <Pagination totalPages={totalPages} page={page} />
       </Tabs>
     </section>
   );

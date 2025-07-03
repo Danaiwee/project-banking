@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 import PaymentForm from "@/components/forms/PaymentForm";
@@ -5,6 +6,12 @@ import Header from "@/components/header/Header";
 import { ROUTES } from "@/constants/routes";
 import { getAccounts } from "@/lib/actions/bank.action";
 import { getLoggedInUser } from "@/lib/actions/user.action";
+
+export const metadata: Metadata = {
+  title: "Next Bank | Payment Transfer",
+  description:
+    "Easily transfer funds with Next Banking. Send money between accounts or to others securely and instantly using QR, PromptPay, or direct transfers.",
+};
 
 const PaymentPage = async () => {
   const user = await getLoggedInUser();
