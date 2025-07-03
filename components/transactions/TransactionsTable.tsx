@@ -59,7 +59,7 @@ const TransactionsTable = ({ transactions }: TransactionsTableProps) => {
                 className={`pl-1 pr-10 font-semibold ${isDebit ? "text-[#f04438]" : "text-[#039855]"}`}
               >
                 {isCredit
-                  ? `-${showAmount}`
+                  ? `${showAmount}`
                   : isCredit
                     ? showAmount
                     : showAmount}

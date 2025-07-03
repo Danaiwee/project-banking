@@ -48,7 +48,7 @@ export const TRANSACTIONS = [
     accountId: "acc_001",
     amount: 9.99,
     pending: false,
-    category: "Entertainment",
+    category: "Coffee Shops",
     date: "2025-07-01",
     image: "/icons/music.svg",
     $createdAt: "2025-06-20T04:11:05.000Z",
@@ -127,20 +127,20 @@ export const TRANSACTIONS = [
 ];
 
 export const TOP_CATEGORY_STYLES = {
-  "Food and Drink": {
-    bg: "bg-blue-25",
-    circleBg: "bg-blue-100",
+  "Coffee Shops": {
+    bg: "bg-pink-25",
+    circleBg: "bg-pink-100",
     text: {
-      main: "text-blue-900",
-      count: "text-blue-700",
+      main: "text-pink-900",
+      count: "text-pink-700",
     },
     progress: {
-      bg: "bg-blue-100",
-      indicator: "bg-blue-700",
+      bg: "bg-pink-100",
+      indicator: "bg-pink-700",
     },
-    icon: "/icons/monitor.svg",
+    icon: "/icons/coins.svg",
   },
-  Travel: {
+  Income: {
     bg: "bg-success-25",
     circleBg: "bg-success-100",
     text: {
@@ -153,16 +153,55 @@ export const TOP_CATEGORY_STYLES = {
     },
     icon: "/icons/coins.svg",
   },
-  default: {
-    bg: "bg-pink-25",
-    circleBg: "bg-pink-100",
+  Utilities: {
+    bg: "bg-indigo-25",
+    circleBg: "bg-indigo-100",
     text: {
-      main: "text-pink-900",
-      count: "text-pink-700",
+      main: "text-indigo-900",
+      count: "text-indigo-700",
     },
     progress: {
-      bg: "bg-pink-100",
-      indicator: "bg-pink-700",
+      bg: "bg-indigo-100",
+      indicator: "bg-indigo-700",
+    },
+    icon: "/icons/coins.svg",
+  },
+  Transfers: {
+    bg: "bg-blue-25",
+    circleBg: "bg-blue-100",
+    text: {
+      main: "text-blue-900",
+      count: "text-blue-700",
+    },
+    progress: {
+      bg: "bg-blue-100",
+      indicator: "bg-blue-700",
+    },
+    icon: "/icons/coins.svg",
+  },
+  "Top-up": {
+    bg: "bg-yellow-25",
+    circleBg: "bg-yellow-100",
+    text: {
+      main: "text-yellow-900",
+      count: "text-yellow-700",
+    },
+    progress: {
+      bg: "bg-yellow-100",
+      indicator: "bg-yellow-700",
+    },
+    icon: "/icons/coins.svg",
+  },
+  default: {
+    bg: "bg-gray-25",
+    circleBg: "bg-gray-100",
+    text: {
+      main: "text-gray-900",
+      count: "text-gray-700",
+    },
+    progress: {
+      bg: "bg-blue-100",
+      indicator: "bg-blue-700",
     },
     icon: "/icons/shopping-bag.svg",
   },

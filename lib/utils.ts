@@ -131,8 +131,37 @@ export function getTransactionStatus(date: Date | string) {
   return inputDate > twoDaysAgo ? "Processing" : "Success";
 }
 
-export const removeSpecialCharacters = (value: string) => {
+export function removeSpecialCharacters(value: string) {
   return value.replace(/[^\w\s]/gi, "");
-};
+}
 
+export function countTransactionsCategory(
+  transactions: Transaction[]
+): CategoryCounts[] {
+  const categoryCounts: { [category: string]: number } = {};
+
+  for (const transaction of transactions) {
+    const category = transaction.category || "Uncategorized";
+
+    if (Object.hasOwn(categoryCounts, category)) {
+      categoryCounts[category]++;
+    } else {
+      categoryCounts[category] = 1;
+    }
+  }
+
+  const totalCount = transactions.length;
+
+  const aggregatedCategories: CategoryCounts[] = Object.keys(categoryCounts).map(
+    (category) => ({
+      name: category,
+      count: categoryCounts[category],
+      totalCount,
+    })
+  );
+
+  aggregatedCategories.sort((a, b) => b.count - a.count);
+
+  return aggregatedCategories;
+}
 

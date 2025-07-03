@@ -22,9 +22,15 @@ interface PlaidLinkProps {
   user: User | null;
   variant?: string;
   isMobile?: boolean;
+  isRightSidebar?: boolean;
 }
 
-const PlaidLink = ({ user, variant, isMobile = false }: PlaidLinkProps) => {
+const PlaidLink = ({
+  user,
+  variant,
+  isMobile = false,
+  isRightSidebar = false,
+}: PlaidLinkProps) => {
   const router = useRouter();
 
   // 1.Create Token State
@@ -61,6 +67,24 @@ const PlaidLink = ({ user, variant, isMobile = false }: PlaidLinkProps) => {
   // 5.Call usePlaidlink callback and pass the config
   const { open, ready } = usePlaidLink(config);
 
+  if(isRightSidebar) {
+    return (
+      <Button className="plaidlink-default" onClick={() => open()}>
+          <Image
+            src="/icons/plus.svg"
+            width={20}
+            height={20}
+            alt="Plus icon"
+          />
+          <p
+            className={`text-[16px] font-semibold text-black-2 ${isMobile ? "" : "hidden xl:flex"} }`}
+          >
+            Add Bank
+          </p>
+        </Button>
+    )
+  }
+
   return (
     <>
       {variant === "primary" ? (
@@ -75,7 +99,7 @@ const PlaidLink = ({ user, variant, isMobile = false }: PlaidLinkProps) => {
         <Button className="plaidlink-ghost" onClick={() => open()}>
           Connect Bank
         </Button>
-      ) : (
+      ) :  (
         <Button className="plaidlink-default" onClick={() => open()}>
           <Image
             src="/icons/connect-bank.svg"

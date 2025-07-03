@@ -23,7 +23,7 @@ export default async function HomePage({ searchParams }: RouteParams) {
 
   const account = await getAccount({ appwriteItemId });
   const transactions = account.transactions;
-
+  
   return (
     <section className="home no-scrollbar">
       <div className="home-content no-scrollbar">
@@ -52,7 +52,7 @@ export default async function HomePage({ searchParams }: RouteParams) {
 
       <RightSidebar
         user={user}
-        transactions={[]}
+        transactions={transactions}
         banks={accountsData?.slice(0, 2)}
         accounts={accountsData}
       />

@@ -1,7 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
+import { TRANSACTIONS } from "@/constants";
+import { countTransactionsCategory } from "@/lib/utils";
 
 import BankCard from "./BankCard";
+import Category from "./Category";
+import PlaidLink from "./plaid/PlaidLink";
 
 interface RightSidebarProps {
   user: User | null;
@@ -16,8 +18,9 @@ const RightSidebar = ({
   banks,
   accounts,
 }: RightSidebarProps) => {
+  const categories: CategoryCounts[] = countTransactionsCategory(transactions);
   return (
-    <aside className="right-sidebar noscrollbar">
+    <aside className="right-sidebar">
       <section className="flex flex-col pb-8 text-indigo-500">
         <div className="profile-banner" />
         <div className="profile">
@@ -37,28 +40,16 @@ const RightSidebar = ({
       </section>
 
       <section className="banks">
-        <div className="flex w-full justify-between">
+        <div className="flex w-full justify-between items-center">
           <h2 className="header-2">My Banks</h2>
-          <Link href="/" className="flex gap-1">
-            <Image
-              src="/icons/plus.svg"
-              width={20}
-              height={20}
-              alt="Plus icon"
-              className="size-5"
-            />
-            <h2 className="text-[14px] font-semibold textgray-600">Add Bank</h2>
-          </Link>
+          <PlaidLink user={user} isRightSidebar />
         </div>
 
         {banks?.length > 0 && (
           <div className="flex flex-col gap-2">
             {accounts?.map((account: Account) => {
               return (
-                <div
-                  className={`w-full relative`}
-                  key={account.id}
-                >
+                <div className={`w-full relative`} key={account.id}>
                   <BankCard
                     key={account.id}
                     account={account}
@@ -70,6 +61,16 @@ const RightSidebar = ({
             })}
           </div>
         )}
+
+        <div className="mt-10 flex flex-1 flex-col gap-6">
+          <h2 className="header-2">Top Categories</h2>
+
+          <div className="space-y-5">
+            {categories.map((category: CategoryCounts) => (
+              <Category key={category.name} category={category} />
+            ))}
+          </div>
+        </div>
       </section>
     </aside>
   );

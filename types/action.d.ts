@@ -107,3 +107,13 @@ interface CreateTransactionParams {
   receiverBankId: string;
   email: string;
 }
+
+interface CategoryCounts {
+  name: string;
+  count: number;
+  totalCount: number;
+}
+
+interface CategoryProps {
+  category: IntrinsicAttributes & CategoryCounts
+}
